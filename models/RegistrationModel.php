@@ -17,7 +17,7 @@ class RegistrationModel extends Model
     $date = $_POST['birthDate'];
 
 
-    $result = self::$query->queryRown("SELECT * from users WHERE name='$login'");
+    $result = self::$query->queryRow("SELECT * from users WHERE name='$login'");
     print_r($result);
     if(!empty($result)) {
       exit ("1Извините, введённый вами логин уже зарегистрирован. Введите другой логин.");
@@ -26,12 +26,14 @@ class RegistrationModel extends Model
     $result = self::$query->execute("INSERT INTO users (name, lastName, password, sex, `date`) VALUES('$login', '$lastname', '$password', '$sex', '$date')");
 
     if ($result) {
-      echo "2Вы успешно зарегистрированы! Теперь вы можете зайти на сайт. <a href='index.php'>Главная страница</a>";
-        session_start();
+      echo "2Вы успешно зарегистрированы! Теперь вы можете зайти на сайт. <a href='/MVC'>Главная страница</a>";
           $_SESSION['user']=$result['name'];
     }
+      else{
+          echo 'error';
+      }
 
-
+      return $result;
 
   }
 }
