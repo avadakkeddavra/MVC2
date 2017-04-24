@@ -28,10 +28,7 @@
 
 				);
 			
-			foreach($data['temperature'] as $item)
-			{
-				echo $item;
-			}
+			$this -> view ->generate('weather', 'weather.html', $data);
 		}
 	}
 

@@ -126,12 +126,6 @@
 
         </form>
     </section>
-   <footer>
-       <p>&copy; Copyright by Redhead</p>
-   </footer>
-
-
-
   ?>
 
 <?php include 'footer.php'?>
