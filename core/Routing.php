@@ -1,7 +1,10 @@
 <?php
+namespace core;
+require_once 'load.php';
+
 class Routing
 {
-	static function execute()
+	public function execute()
 	{
 		$controllerName = 'Main';
 		$actionName = 'index';
@@ -15,37 +18,15 @@ class Routing
 		{
 			$actionName = $piecesOfUrl[3];
 		}
-		$modelName =  $controllerName . 'Model';
-		$controllerName =  $controllerName . 'Controller';
+		
+		$controller =  'controllers\\' . $controllerName . 'Controller';
 		$actionName = $actionName .'Action' ;
-		$fileWithModel = $modelName . '.php';
-		$fileWithModelPath	= "models/" . $fileWithModel;
-		if (file_exists($fileWithModelPath))
-		{
-			include $fileWithModelPath;
-		}
-		$fileWithController = $controllerName . '.php';
-		$fileWithControllerPath = "controllers/" . $fileWithController;
-    //echo $fileWithControllerPath;
-		if (file_exists($fileWithControllerPath))
-		{
-			include $fileWithControllerPath;
-		}
-		else
-		{
-			//Здесь нужно добавить обработку ошибки.
-			//Например, перекинуть пользователя на страницу 404
-		}
-		$controller = new $controllerName(str_replace('Controller', '', $controllerName));
-		$action = $actionName;
-    //echo $action;
-		if (method_exists($controller, $action))
-		{
-			call_user_func(array($controller, $actionName), $piecesOfUrl);
-		}
-		else
-		{
-			//Здесь тоже нужно добавить обработку ошибок
-		}
-	}
-}?>
+		
+		$controller = new $controller($controllerName);
+		$controller -> $actionName();		
+
+		
+	}	
+
+}
+?>

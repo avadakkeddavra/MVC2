@@ -1,4 +1,5 @@
 <?php
+namespace vendor;
 /**
  * Website: http://sourceforge.net/projects/simplehtmldom/
  * Acknowledge: Jose Solorzano (https://sourceforge.net/projects/php-html/)
@@ -63,6 +64,9 @@ define('DEFAULT_TARGET_CHARSET', 'UTF-8');
 define('DEFAULT_BR_TEXT', "\r\n");
 define('DEFAULT_SPAN_TEXT', " ");
 define('MAX_FILE_SIZE', 600000);
+
+class Dom{
+
 // helper functions
 // -----------------------------------------------------------------------------
 // get html dom from file
@@ -103,7 +107,7 @@ function dump_html_tree($node, $show_attr=true, $deep=0)
     $node->dump($node);
 }
 
-
+}
 /**
  * simple html dom node
  * PaperG - added ability for "find" routine to lowercase the value of the selector.

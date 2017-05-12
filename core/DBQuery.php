@@ -1,7 +1,8 @@
 <?php
-
+namespace core;
 require __DIR__ . '/DBQueryInterface.php';
-
+use \PDO;
+use \PDOExeption;
 class DBQuery implements DBQueryInterface
 {
     public static $DBConnection;

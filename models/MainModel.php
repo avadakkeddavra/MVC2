@@ -1,4 +1,6 @@
 <?php
+namespace models;
+use core\Model; 
   class MainModel extends Model
   {
 
@@ -13,6 +15,7 @@
 
 
        $result = self::$query->queryRow("SELECT * FROM users WHERE name='$login'");
+       //print_r($result);
        if($login == $result['name']){
          if($password == $result['password']){
            header('Location:/MVC');

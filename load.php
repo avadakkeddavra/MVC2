@@ -1,11 +1,42 @@
 <?php
+class Loader
+{
 
-require_once 'core/Routing.php';
-require_once 'core/Model.php';
-require_once 'core/View.php';
-require_once 'core/Controller.php';
-require_once 'vendor2/simple_html_dom.php';
-//Запуск роутинга
-Routing::execute();
+	public  function loadClass($class_name)
+	{
+		$arr = explode('\\', $class_name);
+		
+		$prefix = array_shift($arr);
+
+
+		if($prefix == 'core')
+		{
+			$pref_file = 'core/';
+		} 
+		elseif($prefix == 'controllers')
+		{
+			$pref_file = 'controllers/';
+		}
+		elseif($prefix == 'models')
+		{
+			$pref_file = 'models/';
+		}
+		elseif($prefix == 'vendor')
+		{
+			$pref_file = 'vendor2/';
+		}
+		
+
+		$file = $pref_file . array_shift($arr) .'.php';
+
+		if(is_file($file))
+		{
+				//echo $file;
+				require_once $file;
+		}
+			
+		
+	}
+}
 
  ?>

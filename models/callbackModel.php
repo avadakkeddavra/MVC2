@@ -1,5 +1,6 @@
 <?php 
-
+namespace models;
+use core\Model; 
 	class callbackModel extends Model
 	{
 		public function addComment()
@@ -11,7 +12,7 @@
     		if ( ! $name && ! $email) {
       			exit ("Вы ввели не всю информацию, вернитесь назад и заполните все поля!");
     		}
-
+    		
     		return self::$query->execute("INSERT INTO callbacks (`name`, `email`, `text`) VALUES ('$name', '$email', '$text')");
     		
 		}

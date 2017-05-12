@@ -1,7 +1,8 @@
 <?php
-
+namespace core;
+use \PDO;
+use \PDOException;
 require __DIR__  . '/DBConnectionInterface.php';
-
 
 class DB implements DBConnectionInterface
 {
@@ -14,7 +15,7 @@ class DB implements DBConnectionInterface
     
     
     
-	/**
+    /**
      * Creates new instance representing a connection to a database
      * @param string $dsn The Data Source Name, or DSN, contains the information required to connect to the database.
      *
@@ -25,14 +26,16 @@ class DB implements DBConnectionInterface
      *
      * @return $this DB
      */
-	public static function connect($dsn, $username = '', $password = '')
+    public static function connect($dsn, $username = '', $password = '')
     {
         if (self::$db === null) {
             try {
                 self::$dsn = $dsn;
                 self::$username = $username;
                 self::$password = $password;
-                
+
+
+
                 self::$db = new PDO($dsn, $username, $password);
             } catch (PDOException $e) {
                 echo 'Подключение не удалось: ' . $e->getMessage();
@@ -109,7 +112,7 @@ class DB implements DBConnectionInterface
     {
         self::$db->getAttribute($attribute);
     }
-	
+    
     /**
      * Closes the currently active DB connection.
      * It does nothing if the connection is already closed.
@@ -124,5 +127,5 @@ class DB implements DBConnectionInterface
     private function __construct(){}
     private function __clone(){}
     private function __wakeup(){}
-	
+    
 }

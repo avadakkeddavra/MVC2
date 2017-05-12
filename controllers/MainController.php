@@ -1,11 +1,10 @@
 <?php
-
-
-
-
-
+namespace controllers;
+use core\Controller;
+use models\MainModel;
   class MainController extends Controller
   {
+    
 
    public function indexAction()
    {
@@ -13,11 +12,13 @@
    }
 
    public function loginAction(){
-     $this->model->loginCheck();
+     $MainModel= new MainModel();
+     $MainModel->loginCheck();
    }
 
    public function logoutAction(){
-     $this->model->logOut();
+    $MainModel= new MainModel();
+     $MainModel->logOut();
    }
 
   }

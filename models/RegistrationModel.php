@@ -1,5 +1,6 @@
 <?php
-
+namespace models;
+use core\Model; 
 class RegistrationModel extends Model
 {
 
@@ -17,7 +18,7 @@ class RegistrationModel extends Model
     $date = $_POST['birthDate'];
 
 
-    $result = self::$query->queryRown("SELECT * from users WHERE name='$login'");
+    $result = self::$query->queryRow("SELECT * from users WHERE name='$login'");
     print_r($result);
     if(!empty($result)) {
       exit ("1Извините, введённый вами логин уже зарегистрирован. Введите другой логин.");

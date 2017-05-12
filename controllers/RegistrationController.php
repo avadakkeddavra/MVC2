@@ -1,6 +1,7 @@
 <?php
-
-include_once 'models/RegistrationModel.php';
+namespace controllers;
+use core\Controller;
+use models\RegistrationModel;
 
 /**
  *
@@ -15,6 +16,7 @@ class RegistrationController extends Controller
 
   public function signupAction()
   {
+  	$this->model = new RegistrationModel();
     $result = $this->model->addUser();
     echo $result;
   }
